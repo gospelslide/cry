@@ -15,6 +15,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/* Admin routes */
+Route::get('admin', 'AdminController@display');
+Route::post('admin/validate', 'AdminController@login');
+Route::get('admin/home', 'AdminController@index');
+Route::get('admin/account/edit', 'AdminController@update');
+Route::get('admin/volunteer/requests', 'AdminController@volunteer');
+Route::get('admin/suggestions', 'AdminController@meal');
+Route::get('admin/donation/approve', 'AdminController@approve');
+Route::get('admin/requirements', 'AdminController@requirement');
+/* Admin routes */
+
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
