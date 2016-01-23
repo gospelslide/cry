@@ -26,7 +26,24 @@ Route::get('admin/donation/approve', 'AdminController@approve');
 Route::get('admin/requirements', 'AdminController@requirement');
 /* Admin routes */
 
+/* Donor routes */
+Route::get('donor', 'DonorController@display');
+Route::get('donor/donate', 'DonorController@donate');
+Route::post('donor/validate', 'DonorController@login');
+Route::get('donor/home', 'DonorController@index');
+Route::get('donor/account/edit', 'DonorController@update');
+Route::get('admin/status', 'DonorController@status');
+/* Donor routes */
 
+/* Volunteer routes */
+Route::get('volunteer', 'VolunteerController@display');
+Route::post('volunteer/validate', 'VolunteerController@login');
+Route::get('volunteer/task', 'VolunteerController@task');
+Route::get('volunteer/home', 'VolunteerController@index');
+Route::get('volunteer/account/edit', 'VolunteerController@update');
+Route::get('volunteer/request', 'VolunteerController@request');
+/* Volunteer routes */
+  
 /*
 |--------------------------------------------------------------------------
 | Application Routes
