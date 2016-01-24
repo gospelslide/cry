@@ -19,25 +19,23 @@ Route::get('/', function () {
 Route::get('admin', 'AdminController@display');
 Route::post('admin/validate', 'AdminController@login');
 Route::get('admin/home', 'AdminController@index');
-Route::get('admin/account/edit', 'AdminController@update');
+Route::get('admin/logout', 'AdminController@logout');
 Route::get('admin/volunteer/requests', 'AdminController@volunteer');
 Route::get('admin/suggestions', 'AdminController@meal');
 Route::get('admin/donation/approve', 'AdminController@approve');
 Route::get('admin/requirements', 'AdminController@requirement');
 /* Admin routes */
 
-/* Donor routes */
-Route::get('donor', 'DonorController@display');
-Route::get('donor/donate', 'DonorController@donate');
-Route::post('donor/validate', 'DonorController@login');
-Route::get('donor/home', 'DonorController@index');
-Route::get('donor/account/edit', 'DonorController@update');
-Route::get('admin/status', 'DonorController@status');
-/* Donor routes */
+/* Donotion routes */
+Route::get('donate', 'DonationController@display');
+Route::post('donate', 'DonationController@validate');
+/* Donation routes */
 
 /* Volunteer routes */
 Route::get('volunteer', 'VolunteerController@display');
 Route::post('volunteer/validate', 'VolunteerController@login');
+Route::post('volunteer/register', 'VolunteerController@register');
+Route::get('volunteer/logout', 'VolunteerController@logout');
 Route::get('volunteer/task', 'VolunteerController@task');
 Route::get('volunteer/home', 'VolunteerController@index');
 Route::get('volunteer/account/edit', 'VolunteerController@update');
