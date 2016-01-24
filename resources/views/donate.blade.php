@@ -3,6 +3,7 @@
 <html class="no-js"> 
 <head>
     <style>
+    #footer{padding-bottom: 50%;}
     #forms{text-align:center;padding-top: 5%;margin-bottom: 12%;}
     </style>
     <meta charset="utf-8">
@@ -16,29 +17,34 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/sl-slide.css">
     <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+static var=0;
+$(document).ready(function(){
+    $("#btn1").click(function(){
+        $("p").append(" <b>Appended text</b>.");
+    });
 
+    $("#btn2").click(function(){
+        $("ol").append("<li><label>Item Name</label><input type='text' name='itemname'"+var+" /><label>Quantity</label><input type='number' name='quantity'"+var+" /></li>");
+    });
+    var++;
+});
+</script>
 
     <style>
-
     .register{
-        margin: 20px;
-        padding: 20px;
+    	margin: 20px;
+    	padding: 20px;
     }
     .left{
-        float:left;
-        margin-left: 15%;
-    }
-    .right{
-        float:right;
-        margin-right: 15%;
+    	float:left;
+    	margin-left: 25%;
     }
     .center{
-        margin-left: 0%;
-        margin-top: 20px;
+    	margin-left: 90px;
+    	margin-top: 20px;
 
-    }
-    #foot{
-        margin:top:300%;
     }
     </style>
 
@@ -50,7 +56,7 @@
     <header class="navbar navbar-default navbar-nav navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            	<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -60,8 +66,8 @@
                 <div class="nav-collapse collapse pull-right">
                     <ul class="nav">
                         <li><a href="/">Home</a></li>
-                        <li><a href="/donate">Donate</a></li>
-                        <li class="active"><a href="#">Volunteer</a></li>
+                        <li class="active"><a href="/donate">Donate</a></li>
+                        <li><a href="/volunteer">Volunteer</a></li>
                         <li><a href="/contact">Contact</a></li>
                     </ul>        
                 </div><!--/.nav-collapse -->
@@ -71,66 +77,66 @@
     <!-- /header -->
 <div id="forms">
 
-<h1>Volunteer Login/Register</h1>
-
+<h1>Register Form Donor</h1>
+{!! Form::open(['url' => 'donate']) !!}
 <div class="container register">
 <div class="left">
-    <h2>LOGIN</h2>
-{!! Form::open(['url' => 'volunteer/validate']) !!}
-    <div class="form-group">
-        {!! Form::label('email','Email:')!!}
-        {!! Form::email('email',null,['class' => 'form-control','required'])!!}
-    </div>
-    <div class="form-group">
-        {!! Form::label('password','Password:')!!}
-        {!! Form::password('password',null,['class' => 'form-control','required'])!!}
-    </div>  
+	<div class="form-group">
+		{!! Form::label('name','Name:')!!}
+		{!! Form::text('name',null,['class' => 'form-control','required'])!!}
+	</div>
+	<div class="form-group">
+		{!! Form::label('email','Email:')!!}
+		{!! Form::email('email',null,['class' => 'form-control','required'])!!}
+	</div>
+	<div class="form-group">
+		{!! Form::label('password','Password:')!!}
+		{!! Form::password('password',null,['class' => 'form-control','required'])!!}
+	</div>	
+
+<div class="form-group">
+		{!! Form::label('contact','Contact:')!!}
+		{!! Form::input('number','contact',null,['class' => 'form-control','required'])!!}
+	</div>	
+</div>
+<div class="right">	
+	<div class="form-group">
+		{!! Form::label('apartment','Apartment/Building No:') !!}
+		{!! Form::text('apartment',null,['class' => 'form-control','required']) !!}
+	</div>
+
+	<div class="form-group">
+		{!! Form::label('street','Street/Locality:') !!}
+		{!! Form::text('street',null,['class' => 'form-control','required']) !!}
+	</div>
+
+	<div class="form-group">
+		{!! Form::label('city','City/State:') !!}
+		{!! Form::text('city',null,['class' => 'form-control','required']) !!}
+	</div>
+
+	<div class="form-group">
+		{!! Form::label('pincode','Pincode:') !!}
+		{!! Form::text('pincode',null,['class' => 'form-control','required']) !!}
+	</div>
+	<h2 id="head2">Food Items to Donate</h2>
+	<ol>
+	<div class="form-group">
+		{!! Form::label('item','Food Item:') !!}
+		{!! Form::text('item',null,['class' => 'form-control','required']) !!}
+	</div>
+	<div class="form-group">
+		{!! Form::label('quantity','Quantity:')!!}
+		{!! Form::input('number','quantity',null,['class' => 'form-control','required'])!!}
+	</div>	
+	</ol>
 <div class='form-group'>
-    <div class="center">
-        {!! Form::submit('Submit',['class' => 'btn btn-primary form-control']) !!}
-    </div>
-</div>
-{!! Form::close()!!}
-</div>
-{!! Form::open(['url' => 'volunteer/register']) !!}
-<div class="right">
-    <h2>REGISTER</h2>   
-    <div class="form-group">
-        {!! Form::open(['url' => 'details']) !!}
-        {!! Form::label('name','Name:')!!}
-        {!! Form::text('name',null,['class' => 'form-control','required'])!!}
-    </div>
-    <div class="form-group">
-        {!! Form::label('email','Email:')!!}
-        {!! Form::email('email',null,['class' => 'form-control','required'])!!}
-    </div>
-    <div class="form-group">
-        {!! Form::label('password','Password:')!!}
-        {!! Form::password('password',null,['class' => 'form-control','required'])!!}
-    </div> 
-
-    <div class="form-group">
-        {!! Form::label('confirm_password','Confirm Password:')!!}
-        {!! Form::password('confirm_password',null,['class' => 'form-control','required'])!!}
-    </div>  
-
-    <div class="form-group">
-        {!! Form::label('address','Address:') !!}
-        {!! Form::text('address',null,['class' => 'form-control','required']) !!}
-    </div>
-
-    <div class="form-group">
-        {!! Form::label('pincode','Pincode:') !!}
-        {!! Form::text('pincode',null,['class' => 'form-control','required']) !!}
-    </div>
-<div class='form-group'>
-    <div class="center">
-        {!! Form::submit('Submit',['class' => 'btn btn-primary form-control']) !!}
-    </div>
+	<div class="center">
+		{!! Form::submit('Submit',['class' => 'btn btn-primary form-control']) !!}
+	</div>
 </div>
 </div>
 </div>
-{!! Form::close()!!}
 <!--Footer-->
 <footer id="footer">
     <div class="container">

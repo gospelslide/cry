@@ -28,7 +28,8 @@ Route::get('admin/requirements', 'AdminController@requirement');
 
 /* Donotion routes */
 Route::get('donate', 'DonationController@display');
-Route::post('donate', 'DonationController@validate');
+Route::post('donate', 'DonationController@submit');
+Route::get('contact', 'DonationController@contact');
 /* Donation routes */
 
 /* Volunteer routes */

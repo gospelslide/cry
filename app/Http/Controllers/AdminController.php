@@ -46,13 +46,7 @@ class AdminController extends Controller
     	{
 	    	$donations = DB::table('donation')
 	    					->join('donation_items', 'donation.id', '=', 'donation_items.donation_id')->get();
-	    	if(!is_null($donations))
-	    	{
-		    	foreach($donations as $donation)
-		    	{
-		    		echo $donation->donor_address;
-		    	}
-		    }
+    	    return redirect('/');
 		}
 		else
 			return redirect('admin');   
@@ -85,7 +79,35 @@ class AdminController extends Controller
 
     public function approve()
     {
-    		
+      $result = DB::select('select * from volunteer where status = 1');
+      $email=$_SESSION['admin'];
+      $admin_location=DB::table('admin')
+                     ->select(DB::raw('latitude,longitude'))
+                     ->where('email', '=', $email)
+                     ->first();
+     
+      $admin_lat=$admin_location->latitude;
+      $admin_lon=$admin_location->longitude;
+      $proximity=[];
+      $distance=[];
+      foreach($result as $value)
+      {
+        $temp = $value->id;
+        $proximity[$temp]=$this->distance($admin_lat,$admin_lon,$value->latitude,$value->longitude);
+        $distance[]=$this->distance($admin_lat,$admin_lon,$value->latitude,$value->longitude);
+      }
+      asort($proximity);
+      asort($distance);
+      $volunteer=[];
+      $count=0;
+      foreach($proximity as $key=>$value)
+      {
+        $volunteer[] = DB::table('volunteer')
+                     ->select(DB::raw('*'))
+                     ->where('id', '=', $key)
+                     ->get()[0];
+      }
+      return view('admin.viewDetails')->with('volunteer',$volunteer)->with('distance',$distance);
     }
 
     public function requirement()

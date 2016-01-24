@@ -29,11 +29,10 @@
          <a class="pull-left" href="index.html"><img src="images/logo.jpg" /></a>
                 <div class="nav-collapse collapse pull-right">
                     <ul class="nav">
-                        <li class="active"><a href="#">Home</a></li>
-                        <li><a href="#">Donate</a></li>
-                        <li><a href="#">Volunteer</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li class="active"><a href="/">Home</a></li>
+                        <li><a href="/donate">Donate</a></li>
+                        <li><a href="/volunteer">Volunteer</a></li>
+                        <li><a href="/contact">Contact</a></li>
                     </ul>        
                 </div><!--/.nav-collapse -->
             </div>
